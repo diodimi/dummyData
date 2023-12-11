@@ -1,0 +1,162 @@
+[
+    {
+        "id": "1e5b817c9cf80bd6",
+        "type": "tab",
+        "label": "Flow 4",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "5d5c9230a482e062",
+        "type": "function",
+        "z": "1e5b817c9cf80bd6",
+        "name": "speed",
+        "func": "\nmsg.payload={\n    speed:msg.payload\n    \n}\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 330,
+        "y": 320,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "df4b052d244f91af",
+        "type": "mqtt out",
+        "z": "1e5b817c9cf80bd6",
+        "name": "",
+        "topic": "/test/ect",
+        "qos": "1",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "2a9ecd3a3dbe2d2f",
+        "x": 600,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "6678e5cff366b96f",
+        "type": "inject",
+        "z": "1e5b817c9cf80bd6",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "2",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 110,
+        "y": 100,
+        "wires": [
+            [
+                "c845258480f5bf7e",
+                "9c405e9a72a126f7"
+            ]
+        ]
+    },
+    {
+        "id": "c845258480f5bf7e",
+        "type": "random",
+        "z": "1e5b817c9cf80bd6",
+        "name": "",
+        "low": "0",
+        "high": "100",
+        "inte": "true",
+        "property": "payload",
+        "x": 160,
+        "y": 320,
+        "wires": [
+            [
+                "5d5c9230a482e062"
+            ]
+        ]
+    },
+    {
+        "id": "078c149fc1202d7a",
+        "type": "debug",
+        "z": "1e5b817c9cf80bd6",
+        "name": "debug 4",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload.speed.value",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 440,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "9c405e9a72a126f7",
+        "type": "function",
+        "z": "1e5b817c9cf80bd6",
+        "name": "function 17",
+        "func": "msg.payload={\n    speed:{\n        label:'SPEED',\n        value:Math.floor((Math.random() * 100) + 1)\n    },\n    engineTemp:{\n        label:'ENGINE TEMP',\n        value:Math.floor((Math.random() * 100) + 1)\n    },\n    oilTemp:{\n        label:'OIL TEMP',\n        value:Math.floor((Math.random() * 100) + 1)\n    },\n    oilPress:{\n        label:'OIL PRESS',\n        value:Math.floor((Math.random() * 100) + 1)\n    },\n    rpm:{\n        label:'RPM',\n        value:Math.floor((Math.random() * 100) + 1)\n    },\n    fuel:{\n        label:'FUEL',\n        value:Math.floor((Math.random() * 100) + 1)\n    },\n    egt:{\n        label:'EGT',\n        value:Math.floor((Math.random() * 100) + 1)\n    }\n\n}\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 330,
+        "y": 120,
+        "wires": [
+            [
+                "078c149fc1202d7a",
+                "df4b052d244f91af"
+            ]
+        ]
+    },
+    {
+        "id": "2a9ecd3a3dbe2d2f",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "broker.hivemq.com",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    }
+]
